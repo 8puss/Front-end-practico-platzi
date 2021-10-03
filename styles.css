@@ -43,6 +43,12 @@ body{
     text-align: center;
 }
 
+.title-acc {
+    font-size: 18px;
+    margin-bottom: 12px;
+    text-align: start;
+}
+
 .subtitle {
     color: var(--very-light-pink);
     font-size: 16px;
@@ -107,10 +113,11 @@ body{
     height: 35px;
     font-size: 16px;
     padding: 8px; 
+    margin-bottom: 10px;
 }
 
-.input-email {
-    margin-bottom: 22px;
+.form #email {
+    color: var(--very-light-pink);
 }
 
 .primary-button {
@@ -137,6 +144,18 @@ body{
     height: 54px;
 }
 
+.signup-button {
+    background-color: var(--hospital-green);
+    border-radius: 8px;
+    border: none;
+    color: var(--white);
+    width: 100%;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    height: 54px;
+}
+
 .login-button {
     margin-top: 14px;
     margin-bottom: 30px;
@@ -151,4 +170,7 @@ body{
         margin-top: 100px;
     }
 
+    .signup-button {
+        margin-top: 100px;
+    }
 }
