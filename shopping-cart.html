@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles.css">
-    <title>Product | Platzi Yard Sale</title>
+    <title>Cart | Platzi Yard Sale</title>
 </head>
 <body>
     <header>
@@ -53,27 +53,47 @@
         </nav>
     </header>
     <main>
-        <aside class="product-detail">
-            <div class="product-detail-close">
-                <img src="./Platzi_YardSale_Icons/icon_close.png" alt="close">
+        <article class="product-detail">
+            <div class="title-container">
+                <img src="./Platzi_YardSale_Icons/flechita.svg" alt="flecha">
+                <p class="title-order">
+                    Shopping cart
+                </p>
             </div>
-            <img src="https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="bike">
-            <div class="product-info">
-                <p>
-                    $35,00
-                </p>
-                <p>
-                    Bike
-                </p>
-                <p>
-                    With this functional and practical bike you'll get anywhere you want.
-                </p>
-                <button class="primary-button add-to-cart-button">
-                    <img src="./Platzi_YardSale_Icons/bt_add_to_cart.svg" alt="add to cart">
-                    Add to cart
+            <div class="my-order-content">
+                <div class="shopping-cart">
+                    <figure>
+                        <img src="https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="bike">
+                    </figure>
+                    <p>Bike</p>
+                    <p>$30,00</p>
+                    <img src="./Platzi_YardSale_Icons/icon_close.png" alt="close">
+                </div>
+                <div class="shopping-cart">
+                    <figure>
+                        <img src="https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="bike">
+                    </figure>
+                    <p>Bike</p>
+                    <p>$30,00</p>
+                    <img src="./Platzi_YardSale_Icons/icon_close.png" alt="close">
+                </div>
+                <div class="order">
+                    <div>
+                        <p>
+                            <span>
+                                Total
+                            </span>
+                        </p>
+                    </div>
+                    <p>
+                        $60.00
+                    </p>
+                </div>
+                <button class="primary-button">
+                    Checkout
                 </button>
             </div>
-        </aside>
+        </article>
     </main>
 </body>
 </html>
