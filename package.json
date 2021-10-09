@@ -2,10 +2,10 @@
   "name": "Front-end-practico-platzi",
   "version": "1.0.0",
   "description": "Repo del curso de Front-end development práctico de Platzi",
-  "main": "index.js",
+  "main": "/src/server/index.js",
   "scripts": {
-    "dev": "nodemon index.js",
-    "start": "node index.js",
+    "dev": "nodemon /src/server/index.js",
+    "start": "node /src/server/index.js",
     "lint": "eslint",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
