@@ -20,8 +20,13 @@ class UserService {
     }
   }
 
-  create() {
-
+  create(data) {
+    const newCategory = {
+      id: faker.datatype.uuid(),
+      ...data
+    }
+    this.categories.push(newCategory);
+    return newCategory;
   }
 
   find() {
@@ -32,8 +37,26 @@ class UserService {
     return this.users.find(item => item.id === id);
   }
 
-  update() {
+  update(id, change) {
+    const index = this.users.findIndex(item => item.id === id);
+    if (index === -1) {
+      throw new Error('product not fount');
+    }
+    const user = this.users[index];
+    this.users[index] = {
+      ...user,
+      ...change
+    };
+    return this.users[index];
+  }
 
+  delete(id) {
+    const index = this.users.findIndex(item => item.id === id);
+    if (index === -1) {
+      throw new Error('user not fount');
+    }
+    this.users.splice(index, 1);
+    return { "message": "deleted", id };
   }
 }
 

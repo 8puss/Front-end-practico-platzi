@@ -48,20 +48,14 @@ router.post('/', (req, res) => {
 router.patch('/:id', (req, res) => {
   const { id } = req.params;
   const body = req.body;
-  res.json({
-    message: 'updated',
-    data: body,
-    id
-  });
+  const category = service.update(id, body);
+  res.json(category);
 });
 //delete
 router.delete('/:id', (req, res) => {
   const { id } = req.params;
-  res.json({
-    message: 'deleted',
-
-    id
-  });
+  const deletedCategory = service.delete(id);
+  res.json(deletedCategory);
 });
 
 

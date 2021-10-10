@@ -64,20 +64,14 @@ router.post('/', (req, res) => {
 router.patch('/:id', (req, res) => {
   const { id } = req.params;
   const body = req.body;
-  res.json({
-    message: 'updated',
-    data: body,
-    id
-  });
+  const user = service.update(id, body);
+  res.json(user);
 });
 //delete
 router.delete('/:id', (req, res) => {
   const { id } = req.params;
-  res.json({
-    message: 'deleted',
-
-    id
-  });
+  const deleteUser = service.delete(id);
+  res.json(deleteUser);
 });
 
 //exportar modulo
