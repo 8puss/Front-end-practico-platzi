@@ -9,7 +9,7 @@ class CategoryService {
     this.generate();
   }
 
-  generate() {
+  async generate() {
     for (let index = 0; index < 100; index++) {
         this.categories.push({
           id: faker.datatype.uuid(),
@@ -18,7 +18,7 @@ class CategoryService {
     }
   }
 
-  create(data) {
+  async create(data) {
     const newCategory = {
       id: faker.datatype.uuid(),
       ...data
@@ -27,15 +27,15 @@ class CategoryService {
     return newCategory;
   }
 
-  find() {
+  async find() {
     return this.categories;
   }
 
-  findOne(id) {
+  async findOne(id) {
     return this.categories.find(item => item.id === id);
   }
 
-  update(id, change) {
+  async update(id, change) {
     const index = this.categories.findIndex(item => item.id === id);
     if (index === -1) {
       throw new Error('Category not found');
@@ -48,13 +48,13 @@ class CategoryService {
     return this.categories[index];
   }
 
-  delete(id) {
+  async delete(id) {
     const index = this.categories.findIndex(item => item.id === id);
     if (index === -1) {
-      throw new Error('product not fount');
+      throw new Error('product not found');
     }
     this.categories.splice(index, 1);
-    return { "message": "deleted", id };
+    return { message: "deleted", id };
   }
 }
 

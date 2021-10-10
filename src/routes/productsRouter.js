@@ -6,10 +6,10 @@ const router = express.Router();
 const service = new ProductService();
 
 //query tipo size
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
 /*   const { size } = req.query;
   const limit = size || 10; */
-  const products = service.find();
+  const products = await service.find();
   res.json(products);
   console.log("products sent");
 });
@@ -31,30 +31,36 @@ router.get('/', (req, res) => {
   }
 }); */
 
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
   const { id } = req.params;
-  const product = service.findOne(id);
+  const product = await service.findOne(id);
   res.status(200).json(product);
   console.log('product ' + product.name + ' sent');
   });
 
 //POST
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   const body = req.body;
-  const newProduct = service.create(body);
+  const newProduct = await service.create(body);
   res.status(201).json(newProduct);
 });
 //patch
-router.patch('/:id', (req, res) => {
+router.patch('/:id', async (req, res) => {
+  try {
   const { id } = req.params;
   const body = req.body;
-  const product = service.update(id, body);
+  const product = await service.update(id, body);
   res.json(product);
+  } catch (error) {
+    res.status(404).json({
+      message: error.message
+    });
+  }
 });
 //delete
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
   const { id } = req.params;
-  const deleteProduct = service.delete(id);
+  const deleteProduct = await service.delete(id);
   res.json(deleteProduct);
 });
 

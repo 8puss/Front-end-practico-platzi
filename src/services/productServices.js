@@ -9,7 +9,7 @@ class ProductService {
     this.generate();
   }
 
-  generate() {
+  async generate() {
     for (let index = 0; index < 100; index++) {
         this.products.push({
         id: faker.datatype.uuid(),
@@ -20,7 +20,7 @@ class ProductService {
     }
   }
 
-  create(data) {
+  async create(data) {
     const newProduct = {
       id: faker.datatype.uuid(),
       ...data
@@ -29,18 +29,18 @@ class ProductService {
     return newProduct;
   }
 
-  find() {
+  async find() {
     return this.products;
   }
 
-  findOne(id) {
+  async findOne(id) {
     return this.products.find(item => item.id === id);
   }
 
-  update(id, change) {
+  async update(id, change) {
     const index = this.products.findIndex(item => item.id === id);
     if (index === -1) {
-      throw new Error('product not fount');
+      throw new Error('product not found');
     }
     const product = this.products[index];
     this.products[index] = {
@@ -50,10 +50,10 @@ class ProductService {
     return this.products[index];
   }
 
-  delete(id) {
+  async delete(id) {
     const index = this.products.findIndex(item => item.id === id);
     if (index === -1) {
-      throw new Error('product not fount');
+      throw new Error('product not found');
     }
     this.products.splice(index, 1);
     return { "message": "deleted", id };
