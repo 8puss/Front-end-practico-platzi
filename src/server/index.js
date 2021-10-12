@@ -6,7 +6,7 @@ const routerApi = require('../routes/');
 const {   logErrors, errorHandler, boomErrorHandler } = require('../../middlewares/errorHandler');
 // http
 const port = process.env.PORT || 8080;
-const IP = "192.168.100.9";
+const IP = "192.168.100.44";
 // express app
 const app = express();
 
