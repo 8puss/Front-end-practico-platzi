@@ -1,6 +1,10 @@
+//header files and helpers
 const express = require('express');
-const faker = require('faker');
 const UserService = require('../services/userServices');
+const validatorHandler = require('../../middlewares/validatorHandler');
+const { createUserSchema,
+  updateUserSchema,
+  getUserSchema } = require('../../schemas/productSchema');
 //router
 const router = express.Router();
 //servicios
@@ -44,33 +48,46 @@ router.get('/:id', (req, res) => {
     });
   }
 }); */
-router.get('/:id', async (req, res) => {
-  const { id } = req.params;
-  const user = await service.findOne(id);
-  res.json(user);
-  console.log('user ' + user.firstName + ' ' + user.lastName + ' sent');
-});
+router.get('/:id',
+  validatorHandler(getUserSchema, 'params'),
+  async (req, res) => {
+    try {
+      const { id } = req.params;
+      const user = await service.findOne(id);
+      res.json(user);
+      console.log('user ' + user.firstName + ' ' + user.lastName + ' sent');
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 
 
 //POST
-router.post('/', async (req, res) => {
+router.post('/',
+  validatorHandler(createUserSchema, 'body'),
+  async (req, res) => {
   const body = req.body;
   const newUser = await service.create(body);
   res.status(201).json(newUser);
 });
 //patch
-router.patch('/:id', async (req, res) => {
-  try {
-  const { id } = req.params;
-  const body = req.body;
-  const user = await service.update(id, body);
-  res.json(user);
-  } catch (error) {
-    res.status(404).json({
-    message: error.message
-    })
+router.patch('/:id',
+  validatorHandler(createUserSchema, 'params'),
+  validatorHandler(updateUserSchema, 'body'),
+  async (req, res) => {
+    try {
+      const { id } = req.params;
+      const body = req.body;
+      const user = await service.update(id, body);
+      res.json(user);
+    } catch (error) {
+      res.status(404).json({
+      message: error.message
+      })
+    }
   }
-});
+);
 //delete
 router.delete('/:id', async (req, res) => {
   const { id } = req.params;
