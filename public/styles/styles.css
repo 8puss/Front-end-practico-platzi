@@ -90,7 +90,7 @@ body{
     display: flex;
     flex-direction: column;
     margin-bottom: 12px;
-}   
+}
 
 .form a {
     color: var(--hospital-green);
@@ -118,7 +118,7 @@ body{
     border-radius: 8px;
     height: 35px;
     font-size: 16px;
-    padding: 8px; 
+    padding: 8px;
     margin-bottom: 10px;
 }
 
@@ -170,6 +170,7 @@ body{
 /*products cards style*/
 
 .cards-container {
+    margin-top: 25px;
     display: grid;
     grid-template-columns: repeat(auto-fill,240px);
     gap: 25px;
@@ -234,7 +235,7 @@ body{
     text-align: end;
 }
 
-.desktop-menu ul li:nth-child(1), 
+.desktop-menu ul li:nth-child(1),
 .desktop-menu ul li:nth-child(2) {
     font-weight: bold;
 }
@@ -283,12 +284,12 @@ nav {
     height: 60px;
 }
 
-.navbar-left { 
+.navbar-left {
     display: flex;
     margin-left: 12px;
 }
 
-.navbar-left ul{ 
+.navbar-left ul{
     display: flex;
     margin-left: 12px;
 }
@@ -389,7 +390,7 @@ nav {
     display: grid;
     grid-template-rows: auto 1fr auto;
     width: 300px;
-} 
+}
 
 .my-order-content {
     display: flex;
@@ -567,7 +568,7 @@ nav {
 .title-container img {
     transform: rotate(180deg);
     margin-right: 14px;
-    
+
 }
 
 /*Media queries*/
@@ -604,7 +605,7 @@ nav {
 
     .product-card {
         width: 140px;
-    
+
     }
 
     .product-card img {
