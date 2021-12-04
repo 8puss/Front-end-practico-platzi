@@ -17,7 +17,7 @@ router.get('/', async (req, res, next) => {
     res.json(users);
     console.log("users sent");
   } catch (error) {
-    next(err);
+    next(error);
   }
 });
 
@@ -68,10 +68,14 @@ router.get('/:id',
 //POST
 router.post('/',
   validatorHandler(createUserSchema, 'body'),
-  async (req, res) => {
-    const body = req.body;
-    const newUser = await service.create(body);
-    res.status(201).json(newUser);
+  async (req, res, next) => {
+    try {
+      const body = req.body;
+      const newUser = await service.create(body);
+      res.status(201).json(newUser);
+    } catch (error) {
+      next(error);
+    }
   }
 );
 

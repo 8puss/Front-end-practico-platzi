@@ -25,7 +25,6 @@ class UserService {
   async create(data) {
     const newUser = await models.User.create(data);
     return newUser; 
-    
   }
 
   async find() {
