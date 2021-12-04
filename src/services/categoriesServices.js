@@ -1,5 +1,6 @@
 //header files
 const faker = require('faker');
+const pool = require('../../libs/postgresPool')
 
 
 // plantilla de servicios para productos
@@ -7,6 +8,8 @@ class CategoryService {
   constructor() {
     this.categories = [];
     this.generate();
+    this.pool = pool;
+    this.pool.on('error', (err) => console.error(err));
   }
 
   async generate() {
@@ -28,7 +31,9 @@ class CategoryService {
   }
 
   async find() {
-    return this.categories;
+    const query = 'SELECT * FROM tasks'
+    const answer = await this.pool.query(query)
+    return answer.rows;
   }
 
   async findOne(id) {

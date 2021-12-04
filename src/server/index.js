@@ -3,7 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const routerApi = require('../routes/');
 //middlewares
-const {   logErrors, errorHandler, boomErrorHandler } = require('../../middlewares/errorHandler');
+const {   logErrors, errorHandler, boomErrorHandler, ormErrorHandler } = require('../../middlewares/errorHandler');
 // http
 const port = process.env.PORT || 8080;
 const IP = "192.168.100.9";
@@ -27,6 +27,7 @@ app.use(cors(options));
 routerApi(app);
 //using error middlewares
 app.use(logErrors);
+app.use(ormErrorHandler);
 app.use(boomErrorHandler);
 app.use(errorHandler);
 

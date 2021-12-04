@@ -3,7 +3,7 @@ const Joi = require('joi');
 //validators
 const id = Joi.string().uuid();
 const name = Joi.string()
-.min(3)
+.min(2)
 .max(15);
 const price = Joi.number().integer().min(10);
 const image = Joi.string().uri();

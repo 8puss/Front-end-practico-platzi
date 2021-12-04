@@ -1,5 +1,7 @@
 //header files
+const boom = require('@hapi/boom');
 const faker = require('faker');
+const { models } = require('../../libs/sequelize')
 
 
 // plantilla de servicios para productos
@@ -21,43 +23,35 @@ class UserService {
   }
 
   async create(data) {
-    const newCategory = {
-      id: faker.datatype.uuid(),
-      ...data
-    }
-    this.categories.push(newCategory);
-    return newCategory;
+    const newUser = await models.User.create(data);
+    return newUser; 
+    
   }
 
   async find() {
-    return this.users;
+    const answer = await models.User.findAll();
+    return answer;
   }
 
   async findOne(id) {
-    return this.users.find(item => item.id === id);
+    const user = await models.User.findByPk(id);
+    if (!user) {
+      throw boom.notFound('user not found');
+    }
+    return user;
   }
 
   async update(id, change) {
-    const index = this.users.findIndex(item => item.id === id);
-    if (index === -1) {
-      throw new Error('product not found');
-    }
-    const user = this.users[index];
-    this.users[index] = {
-      ...user,
-      ...change
-    };
-    return this.users[index];
+    const user = await this.findOne(id);
+    const answer = await user.update(change);
+    return answer;
   }
 
   async delete(id) {
-    const index = this.users.findIndex(item => item.id === id);
-    if (index === -1) {
-      throw new Error('user not found');
-    }
-    this.users.splice(index, 1);
-    return { message: "deleted", id };
-  }
+    const user = await this.findOne(id); 
+    await user.destroy(user);
+    return { id };
+}
 }
 
 

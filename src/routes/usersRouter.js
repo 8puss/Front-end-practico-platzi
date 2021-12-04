@@ -2,9 +2,7 @@
 const express = require('express');
 const UserService = require('../services/userServices');
 const validatorHandler = require('../../middlewares/validatorHandler');
-const { createUserSchema,
-  updateUserSchema,
-  getUserSchema } = require('../../schemas/productSchema');
+const { createUserSchema, updateUserSchema, getUserSchema } = require('../../schemas/userSchema');
 //router
 const router = express.Router();
 //servicios
@@ -67,10 +65,12 @@ router.get('/:id',
 router.post('/',
   validatorHandler(createUserSchema, 'body'),
   async (req, res) => {
-  const body = req.body;
-  const newUser = await service.create(body);
-  res.status(201).json(newUser);
-});
+    const body = req.body;
+    const newUser = await service.create(body);
+    res.status(201).json(newUser);
+  }
+);
+
 //patch
 router.patch('/:id',
   validatorHandler(createUserSchema, 'params'),
@@ -88,6 +88,7 @@ router.patch('/:id',
     }
   }
 );
+
 //delete
 router.delete('/:id', async (req, res) => {
   const { id } = req.params;

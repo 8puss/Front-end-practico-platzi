@@ -2,25 +2,26 @@
 const Joi = require('joi');
 //validators
 const id = Joi.string().uuid();
-const firstName = Joi.string()
+const name = Joi.string()
 .min(3)
 .max(15);
-const lastName = Joi.string()
+const email  = Joi.string()
 .min(3)
 .max(15);
-const gender = Joi.string()
-.max(30);
+const password = Joi.string()
+.min(3)
+.max(15);
 
 const  createUserSchema = Joi.object({
-  firstName: firstName.required(),
-  lastName: lastName.required(),
-  gender: gender.required()
+  name: name.required(),
+  email: email.required(),
+  password: password.required()
 });
 
 const  updateUserSchema = Joi.object({
-  firstName: firstName,
-  lastName: lastName,
-  gender: gender
+  name: name,
+  email: email,
+  password: password,
 });
 
 const  getUserSchema = Joi.object({
