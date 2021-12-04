@@ -1,7 +1,7 @@
 //header file
 const Joi = require('joi');
 //validators
-const id = Joi.string().uuid();
+const id = Joi.string();
 const name = Joi.string()
 .min(2)
 .max(15);

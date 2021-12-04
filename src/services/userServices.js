@@ -1,6 +1,6 @@
 //header files
 const boom = require('@hapi/boom');
-const faker = require('faker');
+// const faker = require('faker');
 const { models } = require('../../libs/sequelize')
 
 
@@ -8,19 +8,19 @@ const { models } = require('../../libs/sequelize')
 class UserService {
   constructor() {
     this.users = [];
-    this.generate();
+    // this.generate();
   }
 
-  async generate() {
-    for (let index = 0; index < 100; index++) {
-      this.users.push({
-        id: faker.datatype.uuid(),
-        firstName: faker.name.firstName(),
-        lastName: faker.name.lastName(),
-        gender: faker.name.gender(),
-      });
-    }
-  }
+  // async generate() {
+  //   for (let index = 0; index < 100; index++) {
+  //     this.users.push({
+  //       id: faker.datatype.uuid(),
+  //       firstName: faker.name.firstName(),
+  //       lastName: faker.name.lastName(),
+  //       gender: faker.name.gender(),
+  //     });
+  //   }
+  // }
 
   async create(data) {
     const newUser = await models.User.create(data);

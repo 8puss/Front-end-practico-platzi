@@ -8,13 +8,17 @@ const router = express.Router();
 //servicios
 const service = new UserService();
 
-router.get('/', async (req, res) => {
+router.get('/', async (req, res, next) => {
 /*  const users = [];
   const { size } = req.query;
   const limit = size || 10; */
-  const users = await service.find();
-  res.json(users);
-  console.log("users sent");
+  try {
+    const users = await service.find();
+    res.json(users);
+    console.log("users sent");
+  } catch (error) {
+    next(err);
+  }
 });
 
 //recoger params tipo query
@@ -48,12 +52,12 @@ router.get('/:id', (req, res) => {
 }); */
 router.get('/:id',
   validatorHandler(getUserSchema, 'params'),
-  async (req, res) => {
+  async (req, res, next) => {
     try {
       const { id } = req.params;
       const user = await service.findOne(id);
       res.json(user);
-      console.log('user ' + user.firstName + ' ' + user.lastName + ' sent');
+      console.log('user ' + user.name + ' sent');
     } catch (error) {
       next(error);
     }
