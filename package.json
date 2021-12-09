@@ -1,13 +1,17 @@
 {
-  "name": "Front-end-practico-platzi",
+  "name": "e-commerce-practico-platzi",
   "version": "1.0.0",
-  "description": "Repo del curso de Front-end development práctico de Platzi",
+  "description": "Repo del curso de Front-end development, API con Express.js y bd con Postgres práctico de Platzi",
   "main": "./src/server/index.js",
   "scripts": {
     "dev": "nodemon ./src/server/index.js",
     "start": "node ./src/server/index.js",
     "lint": "eslint",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "migrations:generate": "sequelize-cli migration:generate --name",
+    "migrations:run": "sequelize-cli db:migrate",
+    "migrations:revert": "sequelize-cli db:migrate:undo",
+    "migrations:delete": "sequelize-cli db:migrate:undo:all"
   },
   "repository": {
     "type": "git",
@@ -27,7 +31,8 @@
     "faker": "^5.5.3",
     "joi": "^17.4.2",
     "nodemon": "^2.0.13",
-    "prettier": "^2.4.1"
+    "prettier": "^2.4.1",
+    "sequelize-cli": "^6.3.0"
   },
   "dependencies": {
     "@hapi/boom": "^9.1.4",
