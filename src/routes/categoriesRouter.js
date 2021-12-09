@@ -4,19 +4,23 @@ const CategoryService = require('../services/categoriesServices');
 const validatorHandler = require('../../middlewares/validatorHandler');
 const {   createCategorySchema,
   updateCategorySchema,
-  getCategorySchema } = require('../../schemas/productSchema');
+  getCategorySchema } = require('../../schemas/categorySchema');
 //router
 const router = express.Router();
 //servicios
 const service = new CategoryService();
 
-router.get('/', async (req, res) => {
+router.get('/', async (req, res, next) => {
 /*  const categories = [];
   const { size } = req.query;
   const limit = size || 10; */
-  const categories = await service.find();
-  res.json(categories);
-  console.log("categories sent");
+  try {
+    const categories = await service.find();
+    res.json(categories);
+    console.log("categories sent"); 
+  } catch (error) {
+    next(error);
+  }
 });
 
 //get id
@@ -49,11 +53,15 @@ router.get('/:id',
 
 //POST
 router.post('/',
-  validatorHandler(createCategorySchema ,'body'),
-  async (req, res) => {
-    const body = req.body;
-    const newCategory = await service.create(body);
-    res.status(201).json(newCategory);
+  validatorHandler(createCategorySchema,'body'),
+  async (req, res, next) => {
+    try {      
+      const body = req.body;
+      const newCategory = await service.create(body);
+      res.status(201).json(newCategory);
+    } catch (error) {
+      next(error);
+    }
   }
 );
 //patch

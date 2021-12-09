@@ -48,9 +48,9 @@ class ProductService {
   }
 
   async delete(id) {
-    const user = await this.findOne(id);
-    await user.destroy(user);
-    return { id };
+    const product = await this.findOne(id);
+    await product.destroy(product);
+    return { message: "deleted", id };
   }
 }
 

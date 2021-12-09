@@ -11,7 +11,7 @@ function setupProductModels(sequelize) {
 }
 
 function setupCategoryModels(sequelize) {
-    Product.init(CategorySchema, Category.config(sequelize));
+    Category.init(CategorySchema, Category.config(sequelize));
 }
 
 module.exports = { setupUserModels, setupProductModels, setupCategoryModels};

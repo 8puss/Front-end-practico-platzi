@@ -1,7 +1,7 @@
 //header files
 const boom = require('@hapi/boom');
 // const faker = require('faker');
-const { models } = require('../../libs/sequelize')
+const { models } = require('../../libs/sequelize');
 
 
 // plantilla de servicios para productos
@@ -49,8 +49,8 @@ class UserService {
   async delete(id) {
     const user = await this.findOne(id); 
     await user.destroy(user);
-    return { id };
-}
+    return { message: "deleted", id };
+  }
 }
 
 
