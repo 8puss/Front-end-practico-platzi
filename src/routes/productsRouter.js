@@ -58,10 +58,14 @@ router.get('/:id',
 //POST
 router.post('/',
   validatorHandler(createProductSchema, 'body'),
-  async (req, res) => {
-    const body = req.body;
-    const newProduct = await service.create(body);
-    res.status(201).json(newProduct);
+  async (req, res, next) => {
+    try {
+      const body = req.body;
+      const newProduct = await service.create(body);
+      res.status(201).json(newProduct);
+    } catch (error) {
+      next(error);
+    }
   }
 );
 //patch
@@ -80,10 +84,14 @@ router.patch('/:id',
   }
 );
 //delete
-router.delete('/:id', async (req, res) => {
-  const { id } = req.params;
-  const deleteProduct = await service.delete(id);
-  res.json(deleteProduct);
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const deleteProduct = await service.delete(id);
+    res.json(deleteProduct);
+  } catch (error) {
+    next(error);
+  }
 });
 
 

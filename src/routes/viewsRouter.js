@@ -54,7 +54,7 @@ router.get('/changePassword', async (req, res) => {
   })
 });
 
-router.get('/custom-acc', async (req, res) => {
+router.get('/custom-acc', async (req, res, next) => {
   let customAcc = "custom-acc.html";
   res.sendFile(customAcc, options, function callback(err) {
       if (err) {
@@ -65,7 +65,7 @@ router.get('/custom-acc', async (req, res) => {
   })
 });
 
-router.get('/menu', async (req, res) => {
+router.get('/menu', async (req, res, next) => {
   let menu = "desktop-menu.html";
   res.sendFile(menu, options, function callback(err) {
       if (err) {
@@ -76,7 +76,7 @@ router.get('/menu', async (req, res) => {
   })
 });
 
-router.get('/emailsent', async (req, res) => {
+router.get('/emailsent', async (req, res, next) => {
   let emailsent = "emailsent.html";
   res.sendFile(emailsent, options, function callback(err) {
       if (err) {
@@ -87,7 +87,7 @@ router.get('/emailsent', async (req, res) => {
   })
 });
 
-router.get('/login', async (req, res) => {
+router.get('/login', async (req, res, next) => {
   let login = "login.html";
   res.sendFile(login, options, function callback(err) {
       if (err) {
@@ -98,7 +98,7 @@ router.get('/login', async (req, res) => {
   })
 });
 
-router.get('/mobile', async (req, res) => {
+router.get('/mobile', async (req, res, next) => {
   let mobile = "mobile-menu.html";
   res.sendFile(mobile, options, function callback(err) {
       if (err) {
@@ -109,7 +109,7 @@ router.get('/mobile', async (req, res) => {
   })
 });
 
-router.get('/myorders', async (req, res) => {
+router.get('/myorders', async (req, res, next) => {
   let myOrders = "my-orders.html";
   res.sendFile(myOrders, options, function callback(err) {
       if (err) {
@@ -120,7 +120,7 @@ router.get('/myorders', async (req, res) => {
   })
 });
 
-router.get('/product', async (req, res) => {
+router.get('/product', async (req, res, next) => {
   let product = "producto.html";
   res.sendFile(product, options, function callback(err) {
       if (err) {
@@ -131,7 +131,7 @@ router.get('/product', async (req, res) => {
   })
 });
 
-router.get('/shoppingCart', async (req, res) => {
+router.get('/shoppingCart', async (req, res, next) => {
   let shoppingCart = "shopping-cart.html";
   res.sendFile(shoppingCart, options, function callback(err) {
       if (err) {

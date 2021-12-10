@@ -98,10 +98,14 @@ router.patch('/:id',
 );
 
 //delete
-router.delete('/:id', async (req, res) => {
-  const { id } = req.params;
-  const deleteUser = await service.delete(id);
-  res.json(deleteUser);
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const deleteUser = await service.delete(id);
+    res.json(deleteUser);
+  } catch (error) {
+    next(error);
+  }
 });
 
 //exportar modulo
