@@ -3,7 +3,7 @@ const OrderService = require('../services/orderServices');
 //middlewares header files
 const validatorHandler = require('../../middlewares/validatorHandler');
 const {   createOrderSchema,
-  updateOrderSchema,
+  addItemSchema,
   getOrderSchema } = require('../../schemas/orderSchema');
 //router
 const router = express.Router();
@@ -17,7 +17,7 @@ router.get('/', async (req, res, next) => {
   try {
     const order = await service.find();
     res.json(order);
-    console.log("order sent");
+    console.log("orders sent");
   } catch (error) {
     next(error);
   }
@@ -57,30 +57,43 @@ router.post('/',
   async (req, res, next) => {
     try {
       const body = req.body;
-      const newCategory = await service.create(body);
-      res.status(201).json(newCategory);
+      const newOrder = await service.create(body);
+      res.status(201).json(newOrder);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+//post add item
+router.post('/add-item',
+  validatorHandler(addItemSchema,'body'),
+  async (req, res, next) => {
+    try {
+      const body = req.body;
+      const newItem = await service.addItem(body);
+      res.status(201).json(newItem);
     } catch (error) {
       next(error);
     }
   }
 );
 //patch
-router.patch('/:id',
-  validatorHandler(createOrderSchema, 'params'),
-  validatorHandler(updateOrderSchema,'body'),
-  async (req, res) => {
-  try {
-    const { id } = req.params;
-    const body = req.body;
-    const order = await service.update(id, body);
-    res.json(order);
-  } catch (error) {
-      res.status(404).json({
-      message: error.message
-      });
-    }
-  }
-);
+// router.patch('/:id',
+//   validatorHandler(createOrderSchema, 'params'),
+//   validatorHandler(updateOrderSchema,'body'),
+//   async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const body = req.body;
+//     const order = await service.update(id, body);
+//     res.json(order);
+//   } catch (error) {
+//       res.status(404).json({
+//       message: error.message
+//       });
+//     }
+//   }
+// );
 //delete
 router.delete('/:id', async (req, res) => {
   const { id } = req.params;

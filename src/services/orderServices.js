@@ -27,10 +27,23 @@ class OrderService {
     return newOrder;
   }
 
+  async addItem(data) {
+    const newItem = await models.OrderProduct.create(data);
+    return newItem;
+  }
+
   async find() {
     // const query = 'SELECT * FROM tasks'
-    const answer = await models.Order.findAll();
-    return answer;
+    const orders = await models.Order.findAll({
+      include: [
+        {
+          association: 'customer',
+          include: ['user']
+        },
+        'items'
+      ]
+    });
+    return orders;
   }
 
   async findOne(id) {
@@ -39,8 +52,8 @@ class OrderService {
         {
           association: 'customer',
           include: ['user']
-
-        }
+        },
+        'items'
       ]
     });
     if (!order) {

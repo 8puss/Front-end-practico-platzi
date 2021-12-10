@@ -5,23 +5,26 @@ const ProductService = require('../services/productServices');
 const validatorHandler = require('../../middlewares/validatorHandler');
 const { createProductSchema,
   updateProductSchema,
-  getProductSchema } = require('../../schemas/productSchema');
+  getProductSchema,
+queryProductSchema } = require('../../schemas/productSchema');
 //router
 const router = express.Router();
 //servicios
 const service = new ProductService();
 
 //query tipo size
-router.get('/', async (req, res, next) => {
-/*   const { size } = req.query;
-  const limit = size || 10; */
-  try {
-    const products = await service.find();
-    res.json(products);
-    console.log("products sent");
-  } catch (error) {
-    next(error);
-  }
+router.get('/',
+  validatorHandler(queryProductSchema, 'query'),
+  async (req, res, next) => {
+  /*   const { size } = req.query;
+    const limit = size || 10; */
+    try {
+      const products = await service.find(req.query);
+      res.json(products);
+      console.log("products sent");
+    } catch (error) {
+      next(error);
+    }
 });
 
 //get id
