@@ -12,12 +12,16 @@ const router = express.Router();
 const service = new ProductService();
 
 //query tipo size
-router.get('/', async (req, res) => {
+router.get('/', async (req, res, next) => {
 /*   const { size } = req.query;
   const limit = size || 10; */
-  const products = await service.find();
-  res.json(products);
-  console.log("products sent");
+  try {
+    const products = await service.find();
+    res.json(products);
+    console.log("products sent");
+  } catch (error) {
+    next(error);
+  }
 });
 
 //get id

@@ -24,11 +24,13 @@ class UserService {
 
   async create(data) {
     const newUser = await models.User.create(data);
-    return newUser; 
+    return newUser;
   }
 
   async find() {
-    const answer = await models.User.findAll();
+    const answer = await models.User.findAll({
+      include: ['customer']
+    });
     return answer;
   }
 
@@ -47,7 +49,7 @@ class UserService {
   }
 
   async delete(id) {
-    const user = await this.findOne(id); 
+    const user = await this.findOne(id);
     await user.destroy(user);
     return { message: "deleted", id };
   }

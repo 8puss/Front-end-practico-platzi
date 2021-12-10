@@ -23,12 +23,16 @@ class CustomerService {
   // }
 
   async create(data) {
-    const newCustomer = await models.Customer.create(data);
-    return newCustomer; 
+    const newCustomer = await models.Customer.create(data, {
+      include: ['user']
+    });
+    return newCustomer;
   }
 
   async find() {
-    const answer = await models.Customer.findAll();
+    const answer = await models.Customer.findAll({
+      include: ['user']
+    });
     return answer;
   }
 
@@ -47,7 +51,7 @@ class CustomerService {
   }
 
   async delete(id) {
-    const customer = await this.findOne(id); 
+    const customer = await this.findOne(id);
     await customer.destroy(customer);
     return { message: "deleted", id };
   }
